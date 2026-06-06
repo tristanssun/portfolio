@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
+import { LoadAnimation } from "@/components/load-animation";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -8,8 +9,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tristan",
+  title: "Tristan Sun",
   description: "Portfolio of Tristan.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 const themeScript = `
@@ -36,6 +40,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <LoadAnimation />
         {children}
       </body>
     </html>
