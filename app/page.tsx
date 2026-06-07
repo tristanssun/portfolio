@@ -138,7 +138,7 @@ export default function Home() {
           className="load-drop mt-16 border-t border-border pt-8 text-base text-muted-foreground"
           style={{ "--load-delay": "500ms" } as CSSProperties}
         >
-          <p>Reach out to me at tris at mit dot edu.</p>
+          <p>reach out at tris at mit dot edu.</p>
           <div className="mt-7 flex gap-8">
             {links.map((link) => (
               <a

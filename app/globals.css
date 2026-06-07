@@ -116,21 +116,42 @@ body {
 .load-drop {
   opacity: 0;
   transform: translateY(-18px);
-  transition:
-    opacity 520ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: var(--load-delay, 0ms);
 }
 
-html.is-loaded .load-drop {
-  opacity: 1;
-  transform: translateY(0);
+.load-drop.is-visible {
+  animation: load-drop 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--load-delay, 0ms);
+}
+
+@keyframes load-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .load-drop {
-    opacity: 1;
     transform: none;
-    transition: none;
+  }
+
+  .load-drop.is-visible {
+    animation: load-fade 240ms ease-out both;
+    animation-delay: var(--load-delay, 0ms);
+  }
+}
+
+@keyframes load-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }

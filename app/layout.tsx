@@ -10,10 +10,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tristan Sun",
-  description: "Portfolio of Tristan.",
-  icons: {
-    icon: "/favicon.png",
-  },
+  description: "Tristan's portfolio."
 };
 
 const themeScript = `

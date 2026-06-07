@@ -4,11 +4,19 @@ import { useEffect } from "react";
 
 export function LoadAnimation() {
   useEffect(() => {
-    const frame = window.requestAnimationFrame(() => {
-      document.documentElement.classList.add("is-loaded");
+    const elements = Array.from(document.querySelectorAll(".load-drop"));
+
+    elements.forEach((element) => {
+      element.classList.remove("is-visible");
     });
 
-    return () => window.cancelAnimationFrame(frame);
+    const timeout = window.setTimeout(() => {
+      elements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+    }, 120);
+
+    return () => window.clearTimeout(timeout);
   }, []);
 
   return null;
