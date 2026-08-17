@@ -14,31 +14,63 @@ const sections = [
   {
     label: "experience",
     items: [
-      { title: "Research Science Institute 2026", detail: "bioinformatics research" },
+      {
+        title: "Research Science Institute 2026",
+        href: "https://youtu.be/-nFmaJTAXPs",
+      },
       {
         title: "USA Computing Olympiad Camp 2025",
-        detail: "top 25 in the USA",
+        detail: "top 24 in the USA",
+        href: "https://usaco.org/index.php?page=finalists25",
+      },
+      {
+        title: "Paradigm Fellowship 2026",
+        href: "https://paradigm.xyz/fellowship-2026",
       },
       {
         title: "Highland Park High School Student Council",
         detail: "2026-2027 executive president",
       },
-      { title: "USA AI Olympiad Camp 2026", detail: "machine learning" },
+      { title: "USA AI Olympiad Camp 2026" },
       {
         title: "Congressional App Challenge 2025",
         detail: "TX24 winner",
         href: "https://www.congressionalappchallenge.us/25-TX24/",
       },
       {
-        title: "Codeforces tristansun",
-        detail: "2188 max rating",
+        title: "competitive programming",
+        detail: "2188 max codeforces rating",
         href: "https://codeforces.com/profile/tristansun",
+      },
+    ],
+  },
+  {
+    label: "research",
+    items: [
+      {
+        title: "Single Nucleus Dissection of Nine Alzheimer's Disease Comorbidities",
+        href: "/research/single-nucleus-alzheimers-comorbidities.pdf",
+        extraLinks: [
+          { label: "oral presentation", href: "https://youtu.be/-nFmaJTAXPs" },
+        ],
+      },
+      {
+        title: "Omega-3 Fatty Acids and Atrial Fibrillation",
+        href: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf",
+      },
+      {
+        title: "Diophantine Approximations on Spheres",
+        href: "/research/diophantine-approximations-on-spheres.pdf",
       },
     ],
   },
   {
     label: "projects",
     items: [
+      {
+        title: "DNA Data Storage",
+        detail: "designed the fastest inkjet-based system in the world",
+      },
       {
         title: "MyHeartHealth",
         detail: "iOS app for blood pressure log parsing",
@@ -85,7 +117,7 @@ export default function Home() {
               className="load-drop mt-7 text-xl leading-9 text-muted-foreground"
               style={{ "--load-delay": "120ms" } as CSSProperties}
             >
-              working at the intersection of ai, biology, and robotics.
+              working at the intersection of ai, biology and robotics
             </p>
           </header>
 
@@ -122,10 +154,26 @@ export default function Home() {
                       ) : (
                         <span className="text-foreground">{item.title}</span>
                       )}
-                      <span className="text-muted-foreground">
-                        {" "}
-                        - {item.detail}
-                      </span>
+                      {"detail" in item && item.detail ? (
+                        <span className="text-muted-foreground">
+                          {" "}
+                          - {item.detail}
+                        </span>
+                      ) : null}
+                      {"extraLinks" in item && item.extraLinks?.map((link) => (
+                        <span key={link.href} className="text-muted-foreground">
+                          {" "}
+                          - {" "}
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={linkClass}
+                          >
+                            {link.label}
+                          </a>
+                        </span>
+                      ))}
                     </p>
                   ))}
                 </div>
@@ -138,7 +186,7 @@ export default function Home() {
           className="load-drop mt-16 border-t border-border pt-8 text-base text-muted-foreground"
           style={{ "--load-delay": "500ms" } as CSSProperties}
         >
-          <p>reach out at tris at mit dot edu.</p>
+          <p>reach out at tris at mit dot edu</p>
           <div className="mt-7 flex gap-8">
             {links.map((link) => (
               <a
