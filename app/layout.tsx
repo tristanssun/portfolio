@@ -10,7 +10,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Tristan Sun",
-  description: "Tristan's portfolio."
+  description: "Tristan's portfolio.",
 };
 
 const themeScript = `

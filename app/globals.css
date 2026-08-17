@@ -109,6 +109,20 @@ body {
     color 180ms ease;
 }
 
+.link-underline {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: transparent;
+  transition:
+    color 300ms ease,
+    text-decoration-color 300ms ease;
+}
+
+.link-underline:hover {
+  text-decoration-color: currentColor;
+}
+
 .dark {
   --destructive-foreground: var(--color-red-400);
 }

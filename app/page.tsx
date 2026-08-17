@@ -7,38 +7,80 @@ const links = [
   { label: "instagram", href: "https://www.instagram.com/tristan142857/" },
 ];
 
-const linkClass =
-  "relative text-foreground transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100";
+const linkClass = "link-underline text-foreground";
 
 const sections = [
   {
     label: "experience",
     items: [
-      { title: "Research Science Institute 2026", detail: "bioinformatics research" },
+      {
+        title: "Research Science Institute 2026",
+        href: "https://youtu.be/iGZ4PARF2dc",
+      },
       {
         title: "USA Computing Olympiad Camp 2025",
-        detail: "top 25 in the USA",
+        href: "https://usaco.org/index.php?page=finalists25",
       },
       {
-        title: "Highland Park High School Student Council",
-        detail: "2026-2027 executive president",
+        title: "Paradigm Fellowship 2026",
+        href: "https://paradigm.xyz/fellowship-2026",
       },
-      { title: "USA AI Olympiad Camp 2026", detail: "machine learning" },
       {
-        title: "Congressional App Challenge 2025",
-        detail: "TX24 winner",
+        title: "USA AI Olympiad Camp 2026",
+      },
+      {
+        title: "Highland Park High School Student Council 2026-2027 Executive President",
+      },
+      {
+        title: "Congressional App Challenge TX24 2025 Winner",
         href: "https://www.congressionalappchallenge.us/25-TX24/",
       },
       {
-        title: "Codeforces tristansun",
-        detail: "2188 max rating",
+        title: "Codeforces",
         href: "https://codeforces.com/profile/tristansun",
+      },
+    ],
+  },
+  {
+    label: "research",
+    items: [
+      {
+        title: "Single Nucleus Dissection of Nine Alzheimer's Disease Comorbidities",
+        resources: [
+          {
+            label: "paper",
+            href: "/research/single-nucleus-alzheimers-comorbidities.pdf",
+          },
+          { label: "presentation", href: "https://youtu.be/-nFmaJTAXPs" },
+        ],
+      },
+      {
+        title: "Omega-3 Fatty Acids and Atrial Fibrillation",
+        resources: [
+          {
+            label: "paper",
+            href: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf",
+          },
+        ],
+      },
+      {
+        title: "Diophantine Approximations on Spheres",
+        resources: [
+          {
+            label: "presentation",
+            href: "/research/diophantine-approximations-on-spheres.pdf",
+          },
+        ],
       },
     ],
   },
   {
     label: "projects",
     items: [
+      {
+        title: "DNA Data Storage",
+        detail: "designed the fastest inkjet-based system in the world",
+      },
       {
         title: "MyHeartHealth",
         detail: "iOS app for blood pressure log parsing",
@@ -51,7 +93,7 @@ const sections = [
       },
       {
         title: "Loungeware",
-        detail: "open-source game with 50+ contributors",
+        detail: "open-source videogame with 50+ contributors",
         href: "https://loungeware.games/",
       },
     ],
@@ -61,7 +103,7 @@ const sections = [
 export default function Home() {
   return (
     <main className="min-h-screen px-6 py-10 text-lg text-foreground sm:py-16">
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-2xl flex-col justify-between">
+      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-3xl flex-col justify-between">
         <div>
           <header className="mb-16">
             <div className="flex items-start justify-between gap-6">
@@ -85,7 +127,7 @@ export default function Home() {
               className="load-drop mt-7 text-xl leading-9 text-muted-foreground"
               style={{ "--load-delay": "120ms" } as CSSProperties}
             >
-              working at the intersection of ai, biology, and robotics.
+              working at the intersection of ai, biology and robotics
             </p>
           </header>
 
@@ -110,7 +152,7 @@ export default function Home() {
                 <div className="space-y-5">
                   {section.items.map((item) => (
                     <p key={item.title} className="text-lg leading-9">
-                      {item.href ? (
+                      {"href" in item && item.href ? (
                         <a
                           href={item.href}
                           target="_blank"
@@ -122,10 +164,27 @@ export default function Home() {
                       ) : (
                         <span className="text-foreground">{item.title}</span>
                       )}
-                      <span className="text-muted-foreground">
-                        {" "}
-                        - {item.detail}
-                      </span>
+                      {"detail" in item && item.detail ? (
+                        <span className="text-muted-foreground">
+                          {" "}
+                          - {item.detail}
+                        </span>
+                      ) : null}
+                      {"resources" in item && item.resources?.map((link) => (
+                        <span
+                          key={link.href}
+                          className="ml-4 text-sm text-muted-foreground"
+                        >
+                          <a
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="link-underline text-muted-foreground"
+                          >
+                            {link.label}
+                          </a>
+                        </span>
+                      ))}
                     </p>
                   ))}
                 </div>
@@ -138,7 +197,7 @@ export default function Home() {
           className="load-drop mt-16 border-t border-border pt-8 text-base text-muted-foreground"
           style={{ "--load-delay": "500ms" } as CSSProperties}
         >
-          <p>reach out at tris at mit dot edu.</p>
+          <p>reach out at tris at mit dot edu</p>
           <div className="mt-7 flex gap-8">
             {links.map((link) => (
               <a
@@ -146,7 +205,7 @@ export default function Home() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="relative transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100"
+                className="link-underline text-muted-foreground"
               >
                 {link.label}
               </a>
