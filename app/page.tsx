@@ -7,8 +7,7 @@ const links = [
   { label: "instagram", href: "https://www.instagram.com/tristan142857/" },
 ];
 
-const linkClass =
-  "relative text-foreground transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100";
+const linkClass = "link-underline text-foreground";
 
 const sections = [
   {
@@ -16,11 +15,11 @@ const sections = [
     items: [
       {
         title: "Research Science Institute 2026",
+        detail: "bioinformatics research",
         href: "https://youtu.be/-nFmaJTAXPs",
       },
       {
         title: "USA Computing Olympiad Camp 2025",
-        detail: "top 24 in the USA",
         href: "https://usaco.org/index.php?page=finalists25",
       },
       {
@@ -28,18 +27,17 @@ const sections = [
         href: "https://paradigm.xyz/fellowship-2026",
       },
       {
-        title: "Highland Park High School Student Council",
-        detail: "2026-2027 executive president",
+        title: "USA AI Olympiad Camp 2026",
       },
-      { title: "USA AI Olympiad Camp 2026" },
       {
-        title: "Congressional App Challenge 2025",
-        detail: "TX24 winner",
+        title: "Highland Park High School Student Council 2026-2027 Executive President",
+      },
+      {
+        title: "Congressional App Challenge TX24 2025 Winner",
         href: "https://www.congressionalappchallenge.us/25-TX24/",
       },
       {
-        title: "competitive programming",
-        detail: "2188 max codeforces rating",
+        title: "Competitive programming",
         href: "https://codeforces.com/profile/tristansun",
       },
     ],
@@ -49,18 +47,31 @@ const sections = [
     items: [
       {
         title: "Single Nucleus Dissection of Nine Alzheimer's Disease Comorbidities",
-        href: "/research/single-nucleus-alzheimers-comorbidities.pdf",
-        extraLinks: [
-          { label: "oral presentation", href: "https://youtu.be/-nFmaJTAXPs" },
+        resources: [
+          {
+            label: "Paper",
+            href: "/research/single-nucleus-alzheimers-comorbidities.pdf",
+          },
+          { label: "Presentation", href: "https://youtu.be/-nFmaJTAXPs" },
         ],
       },
       {
         title: "Omega-3 Fatty Acids and Atrial Fibrillation",
-        href: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf",
+        resources: [
+          {
+            label: "Paper",
+            href: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf",
+          },
+        ],
       },
       {
         title: "Diophantine Approximations on Spheres",
-        href: "/research/diophantine-approximations-on-spheres.pdf",
+        resources: [
+          {
+            label: "Presentation",
+            href: "/research/diophantine-approximations-on-spheres.pdf",
+          },
+        ],
       },
     ],
   },
@@ -93,7 +104,7 @@ const sections = [
 export default function Home() {
   return (
     <main className="min-h-screen px-6 py-10 text-lg text-foreground sm:py-16">
-      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-2xl flex-col justify-between">
+      <div className="mx-auto flex min-h-[calc(100vh-5rem)] w-full max-w-3xl flex-col justify-between">
         <div>
           <header className="mb-16">
             <div className="flex items-start justify-between gap-6">
@@ -142,7 +153,7 @@ export default function Home() {
                 <div className="space-y-5">
                   {section.items.map((item) => (
                     <p key={item.title} className="text-lg leading-9">
-                      {item.href ? (
+                      {"href" in item && item.href ? (
                         <a
                           href={item.href}
                           target="_blank"
@@ -160,15 +171,16 @@ export default function Home() {
                           - {item.detail}
                         </span>
                       ) : null}
-                      {"extraLinks" in item && item.extraLinks?.map((link) => (
-                        <span key={link.href} className="text-muted-foreground">
-                          {" "}
-                          - {" "}
+                      {"resources" in item && item.resources?.map((link) => (
+                        <span
+                          key={link.href}
+                          className="ml-4 text-sm text-muted-foreground"
+                        >
                           <a
                             href={link.href}
                             target="_blank"
                             rel="noreferrer"
-                            className={linkClass}
+                            className="link-underline text-muted-foreground"
                           >
                             {link.label}
                           </a>
@@ -194,7 +206,7 @@ export default function Home() {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="relative transition-colors after:absolute after:left-0 after:-bottom-0.5 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-foreground after:transition-transform after:duration-300 after:ease-out hover:text-foreground hover:after:scale-x-100"
+                className="link-underline text-muted-foreground"
               >
                 {link.label}
               </a>
