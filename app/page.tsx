@@ -15,8 +15,7 @@ const sections = [
     items: [
       {
         title: "Research Science Institute 2026",
-        detail: "bioinformatics research",
-        href: "https://youtu.be/-nFmaJTAXPs",
+        href: "https://youtu.be/iGZ4PARF2dc",
       },
       {
         title: "USA Computing Olympiad Camp 2025",
@@ -37,7 +36,7 @@ const sections = [
         href: "https://www.congressionalappchallenge.us/25-TX24/",
       },
       {
-        title: "Competitive programming",
+        title: "Codeforces",
         href: "https://codeforces.com/profile/tristansun",
       },
     ],
@@ -49,17 +48,17 @@ const sections = [
         title: "Single Nucleus Dissection of Nine Alzheimer's Disease Comorbidities",
         resources: [
           {
-            label: "Paper",
+            label: "paper",
             href: "/research/single-nucleus-alzheimers-comorbidities.pdf",
           },
-          { label: "Presentation", href: "https://youtu.be/-nFmaJTAXPs" },
+          { label: "presentation", href: "https://youtu.be/-nFmaJTAXPs" },
         ],
       },
       {
         title: "Omega-3 Fatty Acids and Atrial Fibrillation",
         resources: [
           {
-            label: "Paper",
+            label: "paper",
             href: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf",
           },
         ],
@@ -68,7 +67,7 @@ const sections = [
         title: "Diophantine Approximations on Spheres",
         resources: [
           {
-            label: "Presentation",
+            label: "presentation",
             href: "/research/diophantine-approximations-on-spheres.pdf",
           },
         ],
@@ -94,7 +93,7 @@ const sections = [
       },
       {
         title: "Loungeware",
-        detail: "open-source game with 50+ contributors",
+        detail: "open-source videogame with 50+ contributors",
         href: "https://loungeware.games/",
       },
     ],
