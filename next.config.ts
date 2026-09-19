@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [{ source: "/donate", destination: "https://app.schoolfundr.org/fund/hpstucowokc", permanent: false }];
   },
   async rewrites() {
-    return [
+    return { fallback: [
       ...[
         "/board", "/admin", "/pie-assets/:path*", "/api/:path*",
         "/aps/:path*", "/fonts/:path*", "/pie4cancer-social-v1.png",
@@ -25,7 +25,7 @@ const nextConfig: NextConfig = {
         source: "/cultural-work",
         destination: "/cultural-work/index.html",
       },
-    ];
+    ] };
   },
 };
 
