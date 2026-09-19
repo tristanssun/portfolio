@@ -16,5 +16,8 @@ export async function GET(request: Request, context: { params: Promise<{ key: st
     const value = upstream.headers.get(name);
     if (value) responseHeaders.set(name, value);
   }
+  // Vercel's shared cache must not serve a partial body as a complete image.
+  responseHeaders.set("Cache-Control", "no-store");
+  responseHeaders.set("Vercel-CDN-Cache-Control", "no-store");
   return new Response(upstream.body, { status: upstream.status, headers: responseHeaders });
 }
