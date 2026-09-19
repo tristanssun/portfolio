@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const fundraiser = process.env.FUNDRAISER_ORIGIN || "https://hp-pie-an-ap.tristan-sun.chatgpt.site";
+const fundraiser = process.env.FUNDRAISER_ORIGIN || "https://aws.pie4cancer.org";
 
 const nextConfig: NextConfig = {
   async redirects() {
