@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const fundraiser = process.env.FUNDRAISER_ORIGIN || "https://aws.pie4cancer.org";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return ["/board", "/admin", "/webpages/pie-an-ap", "/webpages/pie-an-ap/board", "/webpages/pie-an-ap/admin"].map(source => ({
+      source,
+      headers: [{ key: "Vercel-CDN-Cache-Control", value: "no-store" }],
+    }));
+  },
   async redirects() {
     return [{ source: "/donate", destination: "https://app.schoolfundr.org/fund/hpstucowokc", permanent: false }];
   },
