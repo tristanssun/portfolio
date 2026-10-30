@@ -10,7 +10,13 @@ const nextConfig: NextConfig = {
     }));
   },
   async redirects() {
-    return [{ source: "/donate", destination: "https://app.schoolfundr.org/fund/hpstucowokc", permanent: false }];
+    return [
+      { source: "/donate", destination: "https://app.schoolfundr.org/fund/hpstucowokc", permanent: false },
+      // Short links to research PDFs
+      { source: "/alzheimers", destination: "/research/single-nucleus-alzheimers-comorbidities.pdf", permanent: false },
+      { source: "/afib", destination: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf", permanent: false },
+      { source: "/spheres", destination: "/research/diophantine-approximations-on-spheres.pdf", permanent: false },
+    ];
   },
   async rewrites() {
     return { fallback: [
