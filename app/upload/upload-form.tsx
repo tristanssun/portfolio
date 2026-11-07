@@ -3,9 +3,9 @@
 import { upload } from "@vercel/blob/client";
 import { useRouter } from "next/navigation";
 import { useState, type ChangeEvent } from "react";
-import { MAX_UPLOAD_BYTES, MAX_UPLOAD_LABEL } from "./limits";
+import { formatSize } from "./limits";
 
-export function UploadForm() {
+export function UploadForm({ spaceLeft }: { spaceLeft: number }) {
   const router = useRouter();
   const [status, setStatus] = useState("");
   const [busy, setBusy] = useState(false);
@@ -13,9 +13,9 @@ export function UploadForm() {
   async function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const input = event.currentTarget;
     const files = Array.from(input.files ?? []);
-    const tooBig = files.find((file) => file.size > MAX_UPLOAD_BYTES);
-    if (tooBig) {
-      setStatus(`${tooBig.name} is over the ${MAX_UPLOAD_LABEL} limit.`);
+    const totalSize = files.reduce((total, file) => total + file.size, 0);
+    if (totalSize > spaceLeft) {
+      setStatus(`Not enough space: ${formatSize(totalSize)} selected, ${formatSize(spaceLeft)} free.`);
       input.value = "";
       return;
     }
@@ -29,6 +29,7 @@ export function UploadForm() {
           access: "public",
           handleUploadUrl: "/upload/token",
           multipart: true,
+          clientPayload: String(file.size),
           onUploadProgress: ({ percentage }) =>
             setStatus(`Uploading ${file.name}... ${Math.round(percentage)}%`),
         });
@@ -48,7 +49,7 @@ export function UploadForm() {
       <input
         type="file"
         multiple
-        disabled={busy}
+        disabled={busy || spaceLeft === 0}
         onChange={handleChange}
         aria-label="Choose files to upload"
         className="block w-full cursor-pointer text-muted-foreground file:mr-3 file:cursor-pointer file:rounded-md file:border file:border-input file:bg-transparent file:px-3 file:py-1 file:text-foreground disabled:opacity-60"
