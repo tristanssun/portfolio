@@ -3,7 +3,7 @@
 import { upload } from "@vercel/blob/client";
 import { useRouter } from "next/navigation";
 import { useState, type ChangeEvent } from "react";
-import { MAX_UPLOAD_BYTES } from "./limits";
+import { MAX_UPLOAD_BYTES, MAX_UPLOAD_LABEL } from "./limits";
 
 export function UploadForm() {
   const router = useRouter();
@@ -15,7 +15,7 @@ export function UploadForm() {
     const files = Array.from(input.files ?? []);
     const tooBig = files.find((file) => file.size > MAX_UPLOAD_BYTES);
     if (tooBig) {
-      setStatus(`${tooBig.name} is over the ${MAX_UPLOAD_BYTES / 1024 / 1024} MB limit.`);
+      setStatus(`${tooBig.name} is over the ${MAX_UPLOAD_LABEL} limit.`);
       input.value = "";
       return;
     }
@@ -28,6 +28,9 @@ export function UploadForm() {
         await upload(`uploads/${crypto.randomUUID()}/${file.name}`, file, {
           access: "public",
           handleUploadUrl: "/upload/token",
+          multipart: true,
+          onUploadProgress: ({ percentage }) =>
+            setStatus(`Uploading ${file.name}... ${Math.round(percentage)}%`),
         });
       }
       setStatus("Done.");

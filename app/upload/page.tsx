@@ -1,6 +1,6 @@
 import { list, type ListBlobResultBlob } from "@vercel/blob";
 import type { Metadata } from "next";
-import { MAX_UPLOAD_BYTES } from "./limits";
+import { MAX_UPLOAD_LABEL } from "./limits";
 import { UploadForm } from "./upload-form";
 
 export const dynamic = "force-dynamic";
@@ -35,8 +35,8 @@ export default async function UploadPage() {
       <div className="space-y-1">
         <h1 className="text-base font-medium">upload</h1>
         <p className="text-muted-foreground">
-          Anyone with this link can see and download everything here. Max{" "}
-          {MAX_UPLOAD_BYTES / 1024 / 1024} MB per file.
+          Anyone with this link can see and download everything here. Max {MAX_UPLOAD_LABEL} per
+          file.
         </p>
       </div>
 
