@@ -53,7 +53,7 @@ const sections = [
           },
           {
             label: "slides",
-            href: "/research/single-nucleus-alzheimers-comorbidities-slides.pdf",
+            href: "/research/alzheimers-slides.pdf",
           },
           { label: "presentation", href: "https://youtu.be/-nFmaJTAXPs" },
         ],
