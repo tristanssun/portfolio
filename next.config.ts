@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/donate", destination: "https://app.schoolfundr.org/fund/hpstucowokc", permanent: false },
       // Short links to research PDFs
+      { source: "/paper", destination: "/research/single-nucleus-alzheimers-comorbidities.pdf", permanent: false },
+      // Old short link, kept so links already shared keep working
       { source: "/alzheimers", destination: "/research/single-nucleus-alzheimers-comorbidities.pdf", permanent: false },
       { source: "/slides", destination: "/research/alzheimers-slides.pdf", permanent: false },
       { source: "/afib", destination: "/research/omega-3-fatty-acids-atrial-fibrillation.pdf", permanent: false },
